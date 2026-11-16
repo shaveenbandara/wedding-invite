@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roshini & Shaveen | Wedding Invitation</title>
+
+  <!-- WhatsApp & Social Media Link Preview Tags -->
+  <meta property="og:title" content="Roshini & Shaveen - Homecoming Invitation" />
+  <meta property="og:description" content="We joyfully invite you to celebrate our wedding on Tuesday, 16th February 2027." />
+  <meta property="og:image" content="cover.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf7f2;
+      --card: #ffffff;
+      --primary: #1e2d24;
+      --gold: #b08d57;
+      --text: #2c2a29;
+      --muted: #6e685f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      text-align: center;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-weight: 600; }
+
+    /* Envelope Cover Screen */
+    #cover {
+      position: fixed; inset: 0;
+      background: radial-gradient(circle at center, #26382d 0%, #152019 100%);
+      color: #f5efe6;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 1000; transition: opacity 0.9s ease, transform 0.9s ease, visibility 0.9s;
+      padding: 28px;
+    }
+    #cover.opened { opacity: 0; transform: scale(1.04); visibility: hidden; pointer-events: none; }
+    .monogram {
+      width: 84px; height: 84px; border: 1px solid var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .seal-btn {
+      margin-top: 32px; padding: 14px 36px; background: var(--gold); color: #fff;
+      border: none; border-radius: 50px; font-size: 0.85rem; letter-spacing: 2.5px;
+      cursor: pointer; box-shadow: 0 6px 20px rgba(176, 141, 87, 0.35);
+      transition: transform 0.2s;
+    }
+    .seal-btn:active { transform: scale(0.97); }
+
+    /* Main Container */
+    main { max-width: 500px; margin: 0 auto; background: var(--bg); }
+    section { padding: 52px 24px; border-bottom: 1px solid #e6dfd5; }
+    .subtitle { letter-spacing: 3px; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; }
+    .names { font-size: 3rem; line-height: 1.1; margin: 14px 0; }
+    .hero-photo {
+      width: 100%; max-width: 340px; height: 400px; object-fit: cover;
+      border-radius: 170px 170px 12px 12px; margin: 24px auto; display: block;
+      border: 4px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    /* Countdown */
+    .countdown { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
+    .cd-box {
+      background: var(--card); padding: 14px 10px; border-radius: 10px; min-width: 68px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid #efe9e0;
+    }
+    .cd-box span { display: block; font-size: 1.5rem; font-weight: 600; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
+    .cd-box small { font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+    /* Event Cards & Map */
+    .event-card {
+      background: var(--card); padding: 24px; border-radius: 12px; margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #efe9e0;
+    }
+    .map-frame { width: 100%; height: 220px; border: 0; border-radius: 10px; margin-top: 16px; }
+
+    /* RSVP Form */
+    form { text-align: left; margin-top: 16px; }
+    label { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 12px; }
+    input, select, textarea {
+      width: 100%; padding: 12px; margin-top: 4px; border: 1px solid #d8cfc2;
+      border-radius: 8px; font-family: inherit; font-size: 0.95rem; background: #fff;
+    }
+    .btn {
+      background: var(--primary); color: #fff; border: none; padding: 15px; width: 100%;
+      border-radius: 8px; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase;
+      cursor: pointer; margin-top: 18px;
+    }
+    .btn:disabled { opacity: 0.6; }
+
+    /* Floating Music Toggle */
+    #music-toggle {
+      position: fixed; bottom: 20px; right: 20px; width: 42px; height: 42px;
+      border-radius: 50%; background: var(--primary); color: var(--gold);
+      border: 1px solid var(--gold); cursor: pointer; z-index: 900; display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Envelope Cover Screen -->
+  <div id="cover">
+    <div class="monogram">R & S</div>
+    <p class="subtitle" style="color: #cbbba0;">You are cordially invited</p>
+    <h1 style="font-size: 2.6rem; margin: 12px 0; color: #fff;">Roshini & Shaveen</h1>
+    <p id="guest-greeting" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; color: #e6cfa7; margin-top: 8px;">
+      Dear Valued Guest,
+    </p>
+    <button class="seal-btn" onclick="openInvite()">OPEN INVITATION</button>
+  </div>
+
+  <audio id="bg-music" loop src="music.mp3"></audio>
+  <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">♪</button>
+
+  <main>
+    <!-- 2. Couple & Countdown -->
+    <section>
+      <p class="subtitle">Together with their parents</p>
+      <h1 class="names">Roshini Dahanaka<br><span style="font-size: 1.6rem; font-style: italic;">&</span><br>Shaveen Bandara</h1>
+      <img src="cover.jpg" alt="Couple" class="hero-photo" onerror="this.style.display='none'" />
+      <p style="font-size: 0.95rem; color: var(--muted);">Request the honour of your presence at their homecoming celebration on</p>
+      <h2 style="font-size: 1.8rem; margin-top: 8px;">Tuesday, 16th February 2027</h2>
+
+      <div class="countdown">
+        <div class="cd-box"><span id="days">00</span><small>Days</small></div>
+        <div class="cd-box"><span id="hours">00</span><small>Hours</small></div>
+        <div class="cd-box"><span id="mins">00</span><small>Mins</small></div>
+        <div class="cd-box"><span id="secs">00</span><small>Secs</small></div>
+      </div>
+    </section>
+
+    <!-- 3. Ceremony & Venue -->
+    <section>
+      <p class="subtitle">When & Where</p>
+      <h2 style="font-size: 2rem;">Wedding Itinerary</h2>
+
+      <div class="event-card">
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 14px 0;" />
+        <h3 style="font-size: 1.4rem;">Homecoming Reception</h3>
+        <p style="font-size: 0.9rem; margin-top: 4px;">7:00 PM Onwards</p>
+        <p style="font-weight: 500; margin-top: 12px;">The Hilton Residences, Colombo</p>
+
+        <!-- Paste your Google Maps Embed URL inside src="" below -->
+        <iframe class="map-frame" loading="lazy" allowfullscreen
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7474565775988!2d79.85348397475694!3d6.920764793078974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25914bf3dd555%3A0x4b82b49f0e7dd0a4!2sHilton%20Colombo%20Residences!5e0!3m2!1sen!2slk!4v1794854103727!5m2!1sen!2slk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- 4. RSVP Section -->
+    <section style="border-bottom: none;">
+      <p class="subtitle">Be Our Guest</p>
+      <h2 style="font-size: 2rem;">RSVP</h2>
+      <p style="font-size: 0.85rem; color: var(--muted);">Kindly confirm your presence by 12th January 2027</p>
+
+      <form id="rsvp-form">
+        <label for="rsvp-name">Guest Name(s)</label>
+        <input type="text" id="rsvp-name" placeholder="Enter your full name" required />
+
+        <label for="rsvp-status">Will you be attending?</label>
+        <select id="rsvp-status">
+          <option value="Joyfully Attending">Joyfully Attending</option>
+          <option value="Regretfully Declining">Regretfully Declining</option>
+        </select>
+
+        <label for="rsvp-heads">Number of Attendees</label>
+        <input type="number" id="rsvp-heads" min="1" max="10" value="1" required />
+
+        <label for="rsvp-msg">Wishes for the Couple (Optional)</label>
+        <textarea id="rsvp-msg" rows="3" placeholder="Write a warm message..."></textarea>
+
+        <button type="submit" class="btn" id="submit-btn">Confirm RSVP</button>
+      </form>
+
+      <div id="rsvp-feedback" style="display: none; background: #eef6ee; color: #235c23; padding: 20px; border-radius: 10px; margin-top: 20px;">
+        <strong>Thank you!</strong><br>Your response has been recorded.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 1. Personalize Guest Name from URL (?g=Kasun+Perera)
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get('g');
+    if (guest) {
+      document.getElementById('guest-greeting').textContent = `Dear ${guest},`;
+      document.getElementById('rsvp-name').value = guest;
+    }
+
+    // 2. Open Envelope & Handle Audio
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+
+    function openInvite() {
+      document.getElementById('cover').classList.add('opened');
+      music.play().then(() => {
+        musicBtn.style.display = 'block';
+      }).catch(() => {});
+    }
+
+    function toggleMusic() {
+      if (music.paused) { music.play(); musicBtn.textContent = '♪'; }
+      else { music.pause(); musicBtn.textContent = '✕'; }
+    }
+
+    // 3. Countdown Timer (Set your exact wedding date & time below)
+    const weddingDate = new Date("Feb 16, 2027 19:00:00").getTime();
+    setInterval(() => {
+      const diff = weddingDate - new Date().getTime();
+      if (diff > 0) {
+        document.getElementById('days').textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+        document.getElementById('hours').textContent = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+        document.getElementById('mins').textContent = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+        document.getElementById('secs').textContent = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+      }
+    }, 1000);
+
+    // 4. Send RSVP to Google Sheets (Replace URL below with your /exec URL)
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxliIUkeVUqlClkWSwR9oMh9PKj-zny3--LP1ZbuwEKbGenPo0xv-bpAQwVp7Jp0JTmSQ/exec";
+    document.getElementById('rsvp-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Prevents browser CORS errors with Google Apps Script
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          name: document.getElementById('rsvp-name').value,
+          status: document.getElementById('rsvp-status').value,
+          heads: document.getElementById('rsvp-heads').value,
+          message: document.getElementById('rsvp-msg').value
+        })
+      }).then(() => {
+        document.getElementById('rsvp-form').style.display = 'none';
+        document.getElementById('rsvp-feedback').style.display = 'block';
+      }).catch(() => {
+        alert("Something went wrong. Please try again.");
+        btn.disabled = false;
+        btn.textContent = "Confirm RSVP";
+      });
+    });
+  </script>
+</body>
+</html>
